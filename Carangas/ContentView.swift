@@ -11,9 +11,14 @@ struct ContentView: View {
     @State private var path = NavigationPath()
     var body: some View {
         NavigationStack(path: $path) {
-            CarListingView()
-                .navigationDestination(for: <#T##Hashable.Protocol#>) { type in
-                    EmptyView()
+            CarListingView(path: $path)
+                .navigationDestination(for: NavigationType.self) { type in
+                    switch type {
+                    case .detail(let car):
+                        CarDetailView(car: .constant(car),path: $path)
+                    case .form(let car):
+                        CarFormView(car: .constant(car),path: $path)
+                    }
                 }
         }
     }

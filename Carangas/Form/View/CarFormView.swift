@@ -8,18 +8,15 @@
 import SwiftUI
 
 struct CarFormView: View {
-    @Binding var car: Car?
+   
     @Binding var path: NavigationPath
+    
     @State private var brand = ""
     @State private var name = ""
     @State private var price: Int = 0
     @State private var gasType: Int = 0
-    @State private var isSaving = false
-    private let service = CarService()
-    var isEditting: Bool {
-        car != nil
-    }
-    
+
+    @Environment(CarFormViewModel.self) var viewModel
     
     var body: some View {
         Form {
@@ -48,50 +45,33 @@ struct CarFormView: View {
             
             Button {
                 Task {
-                    await save()
+                    await viewModel.save(name: name, brand: brand, gasType: gasType, price: price)
+                    goBack()
                 }
                
             } label: {
-                Text(isEditting ? "Alterar" : "Cadastrar")
+                Text(viewModel.saveButtonTitle)
                     .frame(maxWidth: .infinity)
             }
-            .disabled(isSaving)
+            .disabled(viewModel.isSaving)
             .buttonStyle(.borderedProminent)
         }
-        .navigationTitle(isEditting ? "Edicao" : "Cadastro")
+        .navigationTitle(viewModel.navigationTitle)
         .onAppear {
             setupView()
         }
     }
     private func setupView() {
-        name = car?.name ?? ""
-        brand = car?.brand ?? ""
-        price = car?.price ?? 0
-        gasType = car?.gasType ?? 0
+        name = viewModel.name
+        brand = viewModel.brand
+        price = viewModel.price
+        gasType = viewModel.gasType
     }
     
-    private func save() async {
-        isSaving = true
-        let finalCar = car ?? Car()
-        finalCar.brand = brand
-        finalCar.name = name
-        finalCar.gasType = gasType
-        finalCar.price = price
-        
-        if isEditting {
-            await service.updateCar(finalCar)
-        } else {
-            await service.createCar(finalCar)
-        }
-        goBack()
-       
-    }
+  
     
     private func goBack() {
         path.removeLast()
     }
 }
 
-#Preview {
-    CarFormView(car: .constant(nil),path: .constant(.init()))
-}

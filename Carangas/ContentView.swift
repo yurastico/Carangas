@@ -12,18 +12,17 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $path) {
             CarListingView(path: $path)
+                .environment(CarListingViewModel())
                 .navigationDestination(for: NavigationType.self) { type in
                     switch type {
                     case .detail(let car):
-                        CarDetailView(car: .constant(car),path: $path)
+                        CarDetailView(path: $path)
+                            .environment(CarDetailViewModel(car: car))
                     case .form(let car):
-                        CarFormView(car: .constant(car),path: $path)
+                        CarFormView(path: $path)
+                            .environment(CarFormViewModel(car: car))
                     }
                 }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

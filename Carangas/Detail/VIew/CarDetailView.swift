@@ -8,30 +8,26 @@
 import SwiftUI
 
 struct CarDetailView: View {
-    @Binding var car: Car
     @Binding var path: NavigationPath
-    
-    private let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "pt-BR")
-        return formatter
-    }()
-    
+    @Environment(CarDetailViewModel.self) var viewModel
     
     var body: some View {
+        
         VStack(spacing: 24) {
-            CarDataView(image: "car.fill", type: "marca", value: car.brand)
-            CarDataView(image: "fuelpump.fill", type: "Combustivel", value: car.fuel)
-            CarDataView(image: "dollarsign.circle.fill", type: "marca", value: numberFormatter.string(from: NSNumber(value: car.price)) ?? "RS \(car.price)")
+            CarDataView(image: "car.fill", type: "marca", value: viewModel.brand)
+            CarDataView(image: "fuelpump.fill", type: "Combustivel", value: viewModel.fuel)
+            CarDataView(image: "dollarsign.circle.fill", type: "preco", value: viewModel.price)
             Spacer()
         }
         .padding()
-        .navigationTitle(car.name)
+        .navigationTitle(viewModel.car.name)
         .toolbar {
             Button("Editar") {
-                path.append(NavigationType.form(car))
+                path.append(NavigationType.form(viewModel.car))
             }
+        }
+        .onAppear {
+            viewModel.refreshData()
         }
     }
 }
@@ -60,7 +56,4 @@ struct CarDataView: View {
 }
 
 
-#Preview {
-    CarDetailView(car: .constant(.init()),path: .constant(.init()))
-    
-}
+

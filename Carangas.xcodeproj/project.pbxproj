@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C51EABDC2AF30F5C000FB50D /* CarListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EABDB2AF30F5C000FB50D /* CarListingViewModel.swift */; };
+		C51EABDF2AF3114F000FB50D /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EABDE2AF3114F000FB50D /* LoadingState.swift */; };
+		C51EABE52AF316A3000FB50D /* CarDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EABE42AF316A3000FB50D /* CarDetailViewModel.swift */; };
+		C51EABE72AF31A02000FB50D /* CarFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EABE62AF31A02000FB50D /* CarFormViewModel.swift */; };
 		C581B15B2AE9CD8C00D3CAFA /* CarangasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581B15A2AE9CD8C00D3CAFA /* CarangasApp.swift */; };
 		C581B15D2AE9CD8C00D3CAFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C581B15C2AE9CD8C00D3CAFA /* ContentView.swift */; };
 		C581B15F2AE9CD8C00D3CAFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C581B15E2AE9CD8C00D3CAFA /* Assets.xcassets */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C51EABDB2AF30F5C000FB50D /* CarListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarListingViewModel.swift; sourceTree = "<group>"; };
+		C51EABDE2AF3114F000FB50D /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		C51EABE42AF316A3000FB50D /* CarDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailViewModel.swift; sourceTree = "<group>"; };
+		C51EABE62AF31A02000FB50D /* CarFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarFormViewModel.swift; sourceTree = "<group>"; };
 		C581B1572AE9CD8C00D3CAFA /* Carangas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carangas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C581B15A2AE9CD8C00D3CAFA /* CarangasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarangasApp.swift; sourceTree = "<group>"; };
 		C581B15C2AE9CD8C00D3CAFA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +52,115 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C51EABCF2AF30E3E000FB50D /* Listing */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABDD2AF3113B000FB50D /* New Group */,
+				C51EABD42AF30EB9000FB50D /* View */,
+				C51EABD62AF30F0D000FB50D /* ViewModel */,
+				C51EABD52AF30F04000FB50D /* Model */,
+			);
+			path = Listing;
+			sourceTree = "<group>";
+		};
+		C51EABD02AF30E48000FB50D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABE32AF31692000FB50D /* ViewModel */,
+				C51EABE22AF31686000FB50D /* VIew */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		C51EABD12AF30E56000FB50D /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABDA2AF30F44000FB50D /* ViewModel */,
+				C51EABD92AF30F3E000FB50D /* View */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
+		C51EABD22AF30E85000FB50D /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABD32AF30E90000FB50D /* Services */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C51EABD32AF30E90000FB50D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C581B1722AE9E52600D3CAFA /* CarService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C51EABD42AF30EB9000FB50D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C581B1682AE9CE7400D3CAFA /* CarListingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C51EABD52AF30F04000FB50D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C581B1702AE9CFF500D3CAFA /* Car.swift */,
+				C51EABDE2AF3114F000FB50D /* LoadingState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C51EABD62AF30F0D000FB50D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABDB2AF30F5C000FB50D /* CarListingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C51EABD92AF30F3E000FB50D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C581B16C2AE9CEBB00D3CAFA /* CarFormView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C51EABDA2AF30F44000FB50D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABE62AF31A02000FB50D /* CarFormViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C51EABDD2AF3113B000FB50D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C51EABE22AF31686000FB50D /* VIew */ = {
+			isa = PBXGroup;
+			children = (
+				C581B16A2AE9CEA600D3CAFA /* CarDetailView.swift */,
+			);
+			path = VIew;
+			sourceTree = "<group>";
+		};
+		C51EABE32AF31692000FB50D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C51EABE42AF316A3000FB50D /* CarDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		C581B14E2AE9CD8B00D3CAFA = {
 			isa = PBXGroup;
 			children = (
@@ -65,12 +182,11 @@
 			children = (
 				C581B15A2AE9CD8C00D3CAFA /* CarangasApp.swift */,
 				C581B15C2AE9CD8C00D3CAFA /* ContentView.swift */,
-				C581B1702AE9CFF500D3CAFA /* Car.swift */,
 				C581B16E2AE9CF3A00D3CAFA /* NavigationType.swift */,
-				C581B16A2AE9CEA600D3CAFA /* CarDetailView.swift */,
-				C581B16C2AE9CEBB00D3CAFA /* CarFormView.swift */,
-				C581B1722AE9E52600D3CAFA /* CarService.swift */,
-				C581B1682AE9CE7400D3CAFA /* CarListingView.swift */,
+				C51EABD02AF30E48000FB50D /* Detail */,
+				C51EABD12AF30E56000FB50D /* Form */,
+				C51EABD22AF30E85000FB50D /* Shared */,
+				C51EABCF2AF30E3E000FB50D /* Listing */,
 				C581B15E2AE9CD8C00D3CAFA /* Assets.xcassets */,
 				C581B1602AE9CD8C00D3CAFA /* Preview Content */,
 			);
@@ -156,10 +272,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C581B15D2AE9CD8C00D3CAFA /* ContentView.swift in Sources */,
+				C51EABDC2AF30F5C000FB50D /* CarListingViewModel.swift in Sources */,
+				C51EABE72AF31A02000FB50D /* CarFormViewModel.swift in Sources */,
+				C51EABDF2AF3114F000FB50D /* LoadingState.swift in Sources */,
 				C581B1692AE9CE7400D3CAFA /* CarListingView.swift in Sources */,
 				C581B1732AE9E52600D3CAFA /* CarService.swift in Sources */,
 				C581B16B2AE9CEA600D3CAFA /* CarDetailView.swift in Sources */,
 				C581B15B2AE9CD8C00D3CAFA /* CarangasApp.swift in Sources */,
+				C51EABE52AF316A3000FB50D /* CarDetailViewModel.swift in Sources */,
 				C581B16D2AE9CEBB00D3CAFA /* CarFormView.swift in Sources */,
 				C581B1712AE9CFF500D3CAFA /* Car.swift in Sources */,
 				C581B16F2AE9CF3A00D3CAFA /* NavigationType.swift in Sources */,

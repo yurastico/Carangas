@@ -7,27 +7,19 @@
 
 import SwiftUI
 
-enum LoadingState {
-    case loading
-    case loaded
-}
-
 struct CarListingView: View {
-    @State private var cars: [Car] = []
     @Binding var path: NavigationPath
-    @State private var state: LoadingState = .loading
-    private let service = CarService()
+    @Environment(CarListingViewModel.self) var viewModel
+    
     var body: some View {
         Group {
-            
-            
-            switch state {
+            switch viewModel.state {
             case .loaded:
                 content
             case .loading:
                 ZStack {
                     content
-                        .opacity(0.5)
+                        .opacity(viewModel.state == .loading ? 0.5 : 1)
                     ProgressView(label: { Text("Loading...") })
                 }
             }
@@ -39,15 +31,16 @@ struct CarListingView: View {
                 }
             }
             .task {
-                state = .loading
-                await loadCars()
+                
+                await
+                viewModel.loadCars()
               
             }
     }
     
     var content: some View {
         List {
-            ForEach(cars) { car in
+            ForEach(viewModel.cars) { car in
                 NavigationLink(value: NavigationType.detail(car)) {
                     HStack {
                         Text(car.name)
@@ -64,39 +57,17 @@ struct CarListingView: View {
             }
             .onDelete(perform: { indexSet in
                 Task {
-                    await deleteCar(with: indexSet)
+                    await viewModel.deleteCar(with: indexSet)
                 }
             })
         }
         .refreshable {
-            await loadCars()
+            await viewModel.loadCars(showingLoading: false)
         }
     }
     
     
-    private func loadCars() async {
-        let result = await service.loadCars()
-        switch result {
-        case .success(let cars):
-            self.cars = cars
-        case .failure(let failure):
-            print(failure)
-        }
-        state = .loaded
-    }
-    
-    private func deleteCar(with indexSet: IndexSet) async {
-        guard let index = indexSet.first else { return }
-        let car = cars[index]
-        
-        switch await service.deleteCar(car) {
-        case .success:
-            cars.remove(at: index)
-        case .failure(let error):
-            print(error)
-        }
-        
-    }
+  
 }
 
 #Preview {
